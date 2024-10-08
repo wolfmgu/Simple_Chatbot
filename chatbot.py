@@ -16,6 +16,8 @@ def get_response(user_input, user_name):
         return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: Everything that irritates us about others can lead us to an understanding of ourselves. – Carl Jung.  How else are you feeling?"
     elif "frustrated" in user_input:
         return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: Good decisions come from experience. Experience comes from making bad decisions. – Mark Twain  How else are you feeling?"
+    elif "bored" in user_input:
+        return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: Is life not a thousand times too short for us to bore ourselves? – Friedrich Nietzsche  How else are you feeling?"
     elif "lonely" in user_input:
         return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: Feeling sorry for yourself, and your present condition, is not only a waste of energy but the worst habit you could possibly have. – Dale Carnegie  How else are you feeling?"
     elif "bye" in user_input or "goodbye" in user_input:
