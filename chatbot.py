@@ -1,54 +1,48 @@
 import datetime
 
-
 # Function to get a response based on user input
-def get_response(user_input, user_name):
-    user_input = user_input.lower()
-    
+def get_response(user_input: str, user_name: str) -> str:
     # Define responses based on specific keywords or phrases
-    if "sad" in user_input:
-        return f"I'm sorry to hear that, {user_name}! Your motivational quote is: If you think you are too small to make a difference, try sleeping with a mosquito. -Ghandi.  How else are you feeling?"
-    elif "angry" in user_input:
-        return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: Anger makes dull men witty, but it keeps them poor. -Elizabeth I.  How else are you feeling?"
-    elif "unhappy" in user_input:
-        return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: There is no path to happiness. Happiness is the path. –Buddha.  How else are you feeling?"
-    elif "annoyed" in user_input:
-        return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: Everything that irritates us about others can lead us to an understanding of ourselves. – Carl Jung.  How else are you feeling?"
-    elif "frustrated" in user_input:
-        return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: Good decisions come from experience. Experience comes from making bad decisions. – Mark Twain  How else are you feeling?"
-    elif "bored" in user_input:
-        return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: Is life not a thousand times too short for us to bore ourselves? – Friedrich Nietzsche  How else are you feeling?"
-    elif "lonely" in user_input:
-        return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: Feeling sorry for yourself, and your present condition, is not only a waste of energy but the worst habit you could possibly have. – Dale Carnegie  How else are you feeling?"
-    elif "bye" in user_input or "goodbye" in user_input:
-        return f"Goodbye, {user_name}! Have a great day!"
-    else:
-        return f"I'm sorry, {user_name}, I don't understand that. Can you please rephrase?"
+    match user_input:
+        case user_input if any(x in user_input for x in ["angry", "anger", "rage"]):
+            return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: Anger makes dull men witty, but it keeps them poor. -Elizabeth I.\nHow else are you feeling?"
+        case user_input if any(x in user_input for x in ["unhapp", "sad", "depress"]):
+            return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: There is no path to happiness. Happiness is the path. –Buddha.\nHow else are you feeling?"
+        case user_input if "annoy" in user_input:
+            return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: Everything that irritates us about others can lead us to an understanding of ourselves. – Carl Jung.\nHow else are you feeling?"
+        case user_input if "frustrat" in user_input:
+            return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: Good decisions come from experience. Experience comes from making bad decisions. – Mark Twain\nHow else are you feeling?"
+        case user_input if "bored" in user_input:
+            return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: Is life not a thousand times too short for us to bore ourselves? – Friedrich Nietzsche\nHow else are you feeling?"
+        case user_input if "lonel" in user_input:
+            return f"I'm sorry to hear that, {user_name}!  Your motivational quote is: The thing that makes you exceptional, if you are at all, is inevitably that which must also make you lonely. - Lorraine Hansberry\nHow else are you feeling?"
+        case _:
+            return f"I'm sorry, {user_name}, I don't understand that. Can you please rephrase?"
 
 # Function to get the current greeting based on the time of day
-def get_greeting():
+def get_greeting() -> str:
     now = datetime.datetime.now()
     current_hour = now.hour
     if current_hour < 12:
-        return "Good Morning"
+        return "Good morning"
     elif 12 <= current_hour < 18:
-        return "Good Afternoon"
+        return "Good afternoon"
     else:
-        return "Good Evening"
+        return "Good evening"
 
 # Main function to run the chatbot
 def main():
     print("Hello! Welcome to the simple Python chatbot!")
-    
+
     user_name = input("What's your name? ")
     greeting = get_greeting()
     
-    print(f"{greeting}, {user_name}!  I'm here to motivate you.  How are you feeling today?")
+    print(f"{greeting}, {user_name}!  I'm here to motivate you.\nHow are you feeling today?")
     print("Type 'bye' to exit.")
-    
+
     while True:
-        user_input = input("You: ")
-        if user_input.lower() in ["bye", "goodbye"]:
+        user_input = input("You: ").lower()
+        if user_input in ["bye", "goodbye"]:
             print(f"Chatbot: Goodbye, {user_name}! Have a great day!")
             break
         response = get_response(user_input, user_name)
